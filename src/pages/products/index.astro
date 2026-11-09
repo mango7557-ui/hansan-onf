@@ -8,7 +8,8 @@ const {products}=await loadContent();
 <Layout title="제품안내 · 업소용 식용유 18L" description="한산 프리미엄 콩식용유·카놀라유·해바라기유·옥수수유 18L와 OEM 맞춤 전용유를 용도별로 비교하세요. 원재료, 포장 규격, 납품 상담을 확인할 수 있습니다.">
  <PageHero label="제품안내" title="매일의 조리부터<br/>브랜드의 시그니처 메뉴까지." crumb="제품안내" description="사용 환경과 조리 목적에 맞는 한산의 유지류를 골라보세요. 기본 제품으로 맞지 않는 메뉴는 프랜차이즈 전용유로 배합을 설계합니다."><button id="print-catalog" class="button ghost">카탈로그 인쇄 · PDF 저장</button></PageHero>
  <section class="section container products-page">
-  <div class="filter-bar" role="group" aria-label="용도별 필터">{[['all','전체'],['frying','튀김 · 범용'],['bakery','베이커리'],['stir','중식 · 볶음'],['custom','맞춤 전용유']].map(([value,label])=><button class="filter-button" data-filter={value} aria-pressed={value==='all'}>{label}</button>)}</div>
+  <div class="filter-bar" role="group" aria-label="용도별 필터">{[['all','전체'],['frying','튀김과 범용'],['bakery','베이커리'],['stir','중식과 볶음'],['custom','맞춤 전용유']].map(([value,label])=><button class="filter-button" data-filter={value} aria-pressed={value==='all'}>{label}</button>)}</div>
+  <h2 class="visually-hidden">제품 목록</h2>
   <p class="filter-count" aria-live="polite"><strong id="product-count">6</strong>개 제품</p>
   <div class="product-grid">{products.map(product=><ProductCard product={product}/>)}</div>
   <p class="note" style="margin-top:40px">콩식용유와 해바라기유는 유통처에 공개된 실제 제품 사진입니다. 다른 제품의 이미지는 기름의 질감을 표현한 연출 이미지이며, 최종 원재료와 포장은 출고 제품의 표시사항을 확인해 주세요.</p>

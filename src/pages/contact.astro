@@ -11,7 +11,7 @@ const {company,products}=await loadContent();
    <h2>전화와 방문도 환영합니다.</h2>
    <p>평일 업무시간에 대표전화로 바로 상담할 수 있습니다. 방문은 미리 일정을 협의해 주세요.</p>
    <a class="contact-number" href={`tel:${company.phone}`} translate="no">{company.phone}</a>
-   <dl><dt>본사 · 공장</dt><dd>{company.address}<br/>(대흥리 460-13) · 우편번호 {company.postal}</dd><dt>법인</dt><dd>{company.name}<br/><span translate="no">{company.en}</span></dd></dl>
+   <dl><dt>본사 · 공장</dt><dd>{company.address}<br/>(대흥리 460-13)<br/>우편번호 {company.postal}</dd><dt>법인</dt><dd>{company.name}<br/><span translate="no">{company.en}</span></dd></dl>
    <a class="text-link" href={`https://map.naver.com/p/search/${encodeURIComponent(company.address)}`} target="_blank" rel="noopener noreferrer">네이버 지도에서 위치 보기</a>
   </aside>
   <form id="inquiry-form" method="post" action="/api/inquiries" novalidate>

@@ -5,13 +5,13 @@ const steps=[['원료 입고 확인','입고되는 유지의 규격과 관련 �
 ---
 <Layout title="품질관리 · 원료에서 출고까지" description="한산오앤에프의 원료 입고, 저장·충진 공정, 품질 검사 및 출고 관리 과정을 안내합니다. 제품별 적용 규격과 품질 자료는 담당자에게 확인하세요.">
  <PageHero label="품질관리" title="보이지 않는 과정에<br/>더 분명한 기준을 둡니다." crumb="품질관리" description="프랜차이즈 전용유는 가맹점 어디서나 같은 맛이 나야 합니다. 원료가 들어오는 순간부터 완제품이 나가는 순간까지 단계별로 관리하는 이유입니다."/>
- <section class="section container"><span class="kicker">관리 과정</span><h2>네 단계로 이어지는 품질관리</h2><ol class="quality-steps">{steps.map(([title,text])=><li><h3>{title}</h3><p>{text}</p></li>)}</ol></section>
+ <section class="section container"><h2>네 단계로 이어지는 품질관리</h2><ol class="quality-steps">{steps.map(([title,text])=><li><h3>{title}</h3><p>{text}</p></li>)}</ol></section>
  <section class="section dark"><div class="container content-grid">
-  <div><span class="kicker">생산 설비</span><h2>천안 제조 인프라</h2></div>
+  <div><h2>천안 제조 인프라</h2></div>
   <table class="info-table info-table-dark"><tbody><tr><th scope="row">제조 거점</th><td>충청남도 천안시 동남구 성남면 대흥1길 153-45</td></tr><tr><th scope="row">충진 · 포장</th><td>전자동 액상 소분기, 자동 캡핑기, 비전 검사기</td></tr><tr><th scope="row">원유 저장</th><td>온도·산화 방지 제어 시스템을 갖춘 대용량 저장탱크</td></tr><tr><th scope="row">검사 관리</th><td>품질관리(QC)실, 이화학 분석 장비</td></tr><tr><th scope="row">주요 확인 항목</th><td>산가, 과산화물가, 수분 등 제품별 품질 항목</td></tr></tbody></table>
  </div></section>
  <section class="section surface-amber"><div class="container content-grid">
-  <div><span class="kicker">제품 규격</span><h2>규격은 명확하게, 자료는 정확하게.</h2></div>
+  <div><h2>규격은 명확하게, 자료는 정확하게.</h2></div>
   <div class="prose"><p>콩식용유는 KS H 2102, 옥수수유는 KS H 2101 등 제품별 규격 기준을 확인하며 관리합니다. 카놀라유와 해바라기유는 식품공전 규격 기준으로 안내합니다.</p><p class="note">규격 기준 안내는 KS 또는 HACCP 인증 취득 표시가 아닙니다. 거래에 필요한 최신 시험성적서와 제공 가능한 품질 자료는 담당자에게 요청해 주세요.</p><p><a class="text-link" href="/contact/?type=quality">품질 자료 문의하기</a></p></div>
  </div></section>
 </Layout>

@@ -4,5 +4,4 @@ const {product:p}=Astro.props;
 ---
 <figure class:list={['detail-visual',{'is-material':!p.image}]}>
  {p.image?<Art name={`${p.slug}-cutout` as any} alt={`한산 ${p.name} 18L 실제 제품`} widths={[400,600,750]} sizes="(max-width: 760px) 90vw, 45vw" loading="eager" fetchpriority="high"/>:<><Art name="oil-study" alt="맑은 식용유의 질감을 담은 연출 이미지" widths={[480,760,1024,1248]} sizes="(max-width: 760px) 100vw, 45vw" loading="eager" fetchpriority="high"/><span>{p.slug==='custom'?'맞춤 배합':p.name.replace('프리미엄 ','').replace('맑은 ','')}</span></>}
- <figcaption>{p.image?'유통처에 공개된 실제 제품 사진. 출고 시점에 따라 포장이 다를 수 있습니다.':'기름의 질감을 표현한 연출 이미지입니다. 실제 제품 패키지가 아닙니다.'}</figcaption>
 </figure>

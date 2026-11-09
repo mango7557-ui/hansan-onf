@@ -48,8 +48,8 @@ const nav=[['회사소개','/about/'],['전용유 개발','/business/'],['제품
  </nav>
  <footer class="footer"><div class="container">
   <div class="footer-top"><a href="/admin/" class="brand footer-brand" title="관리자" aria-label="한산오앤에프 관리자 페이지"><svg class="brand-icon" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="currentColor" opacity=".12"/><path d="M32 10c-7 10-14 17-14 27a14 14 0 0 0 28 0c0-10-7-17-14-27Z" fill="var(--amber)"/><path d="M32 22c-3.5 5-7 8.5-7 13.5a7 7 0 0 0 14 0c0-5-3.5-8.5-7-13.5Z" fill="var(--espresso)" opacity=".4"/></svg>한산오앤에프<small>Hansan O&F</small></a><div class="footer-links"><a href="/about/">회사소개</a><a href="/products/">제품안내</a><a href="/contact/">오시는 길 · 문의</a><a href="/privacy/">개인정보처리방침</a></div></div>
-  <div class="footer-bottom"><div><p class="footer-tagline">프랜차이즈 전용유 개발 · 업소용 식용유 제조 · 전국 공급</p><strong>{company.name}</strong><p>대표 {company.ceo} · 사업자등록번호 {company.tax}</p><p>{company.address} ({company.postal})</p></div><a class="footer-phone" href={`tel:${company.phone}`}>{company.phone}<small>제품 및 납품 상담</small></a></div>
-  <p class="copyright">© {new Date().getFullYear()} Hansan O&F Co., Ltd.</p>
+  <div class="footer-bottom"><div><p class="footer-tagline">프랜차이즈 전용유 개발, 업소용 식용유 제조, 전국 공급</p><strong>{company.name}</strong><p>대표 {company.ceo}<br/>사업자등록번호 {company.tax}</p><p>{company.address} ({company.postal})</p></div><a class="footer-phone" href={`tel:${company.phone}`}>{company.phone}<small>제품 및 납품 상담</small></a></div>
+  <p class="copyright"><span>© {new Date().getFullYear()} Hansan O&F Co., Ltd.</span><span class="credits">콩식용유와 해바라기유는 실제 유통 제품 사진이며, 그 밖의 오일과 조리 이미지는 연출 이미지입니다.</span></p>
  </div></footer>
  <a class="back-top" href="#main" aria-label="맨 위로">↑</a>
  <script src="../scripts/pointer.ts"></script>
