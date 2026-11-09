@@ -1,0 +1,22 @@
+---
+/**
+ * Responsive brand/product image via astro:assets.
+ * Emits AVIF + WebP sources with srcset so each viewport downloads only the size it needs.
+ * `widths` should bracket the rendered CSS width at 1x and 2x.
+ */
+import {Picture} from 'astro:assets';
+import oilSculpture from '../assets/oil-sculpture.png';
+import culinaryStudy from '../assets/culinary-study.png';
+import oilStudy from '../assets/oil-study.png';
+import soybean from '../assets/soybean-cutout.png';
+import sunflower from '../assets/sunflower-cutout.png';
+
+const images={'oil-sculpture':oilSculpture,'culinary-study':culinaryStudy,'oil-study':oilStudy,'soybean-cutout':soybean,'sunflower-cutout':sunflower} as const;
+type Name=keyof typeof images;
+interface Props{name:Name;alt:string;widths?:number[];sizes?:string;loading?:'eager'|'lazy';fetchpriority?:'high'|'auto';class?:string}
+const {name,alt,widths=[480,768,1024,1400],sizes='(max-width: 760px) 100vw, 50vw',loading='lazy',fetchpriority='auto',class:className}=Astro.props;
+const src=images[name];
+const list=widths.filter(w=>w<=src.width);
+if(!list.includes(src.width))list.push(src.width);
+---
+<Picture src={src} alt={alt} widths={list} sizes={sizes} formats={['avif','webp']} loading={loading} fetchpriority={fetchpriority} decoding={loading==='eager'?'sync':'async'} class={className}/>

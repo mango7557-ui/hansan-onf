@@ -60,6 +60,24 @@ GitHub에서 내려받아 `.opencode/skills/`에 설치했습니다. 두 스킬�
 | frontend-design | [anthropics/skills](https://github.com/anthropics/skills) (190k★, GitHub에서 가장 많은 별을 받은 스킬 저장소) | 템플릿형 기본값 배제, 타이포그래피 중심, 한 곳에만 과감함, 사용자 행동에 응답하는 모션 |
 | motion-design | [LottieFiles/motion-design-skill](https://github.com/LottieFiles/motion-design-skill) (2.9k★, 모션 그래픽 단일 스킬 중 최다) | Premium 아키타입: 350–600ms, cubic-bezier(.4,0,.2,1), 오버슈트 0%. 3단 구조(Setup → Action → Resolution), 1/3 규칙, 3개 모션 레이어 |
 
+### 2차 추가 스킬 (2026-11-09 저녁)
+
+| 스킬 | 출처 | 역할 |
+|---|---|---|
+| ui-ux-pro-max | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) (147k★) | 120개 UX 가이드라인, Astro 스택 규칙, 디자인 시스템 검색 도구 |
+| web-design-guidelines | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) (33.7k★) | Vercel Web Interface Guidelines 감사 체크리스트 |
+| accessibility | [KreerC/ACCESSIBILITY.md](https://github.com/KreerC/ACCESSIBILITY.md) | 실무 접근성 전문가가 쓴 WCAG 2.2 기준 |
+
+세 스킬로 사이트를 감사해 다음을 고쳤습니다.
+
+- **이미지 파이프라인** (ui-ux-pro-max Astro 규칙): 수동 WebP 대신 `astro:assets` `<Picture>`. AVIF + WebP + JPG 폴백, 뷰포트별 srcset. 제품 컷아웃 230 kB → 6–10 kB(AVIF). 모든 이미지에 width/height 유지.
+- **폼** (Vercel WIG + ui-ux-pro-max Forms): 필드별 인라인 오류를 `aria-describedby`로 연결, 제출 시 첫 오류 필드로 포커스 이동, blur 시 검증, `inputmode="tel"`/`email`, 이메일 `spellcheck=false`, 모든 입력에 `autocomplete`, 플레이스홀더에 실제 예시.
+- **대비** (accessibility): 모든 텍스트/배경 쌍을 WCAG 공식으로 계산. 푸터 저작권 3.87:1 → 5.73:1로 수정. 나머지 전부 4.5:1 이상.
+- **타이포그래피** (Vercel WIG): 헤드라인 `text-wrap: balance`, 숫자 열 `tabular-nums`, 로딩 문구 `…`.
+- **테마** (Vercel WIG): `theme-color`를 실제 페이지 배경과 일치, `color-scheme` 명시, 브랜드명·전화번호 `translate="no"`.
+
+ui-ux-pro-max의 `--design-system` 검색은 이 브리프에 "Claymorphism + 테라코타/그린 + Varela Round"를 추천했습니다. 식용유 B2B 제조사에는 맞지 않는 결과(장난감·어린이 앱용 스타일)라 채택하지 않았고, 대신 UX 가이드라인·스택 규칙·체크리스트 데이터만 사용했습니다. 스킬 출력은 추천이지 지시가 아닙니다.
+
 ### 스킬 적용 내용
 
 - **frontend-design**: 대문자 추적 라벨(eyebrow), `01 / 02 / 03` 번호 장식, 링크 뒤 `↗`, 가운뎃점 메타 문자열, 다크+네온 강조 등 "AI 생성물 신호"로 지목된 패턴을 전부 제거. 번호는 실제 순서(OEM 개발 단계, 품질관리 단계)에만 사용. 본문 줄 길이 34em 이하. 영문 디스플레이 대신 한국어 헤드라인이 페이지의 성격을 담당.

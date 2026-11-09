@@ -9,26 +9,26 @@ import {company,products} from '../data/site.js';
   <aside class="contact-info" id="location">
    <h2>전화와 방문도 환영합니다.</h2>
    <p>평일 업무시간에 대표전화로 바로 상담할 수 있습니다. 방문은 미리 일정을 협의해 주세요.</p>
-   <a class="contact-number" href={`tel:${company.phone}`}>{company.phone}</a>
-   <dl><dt>본사 · 공장</dt><dd>{company.address}<br/>(대흥리 460-13) · 우편번호 {company.postal}</dd><dt>법인</dt><dd>{company.name}<br/>{company.en}</dd></dl>
+   <a class="contact-number" href={`tel:${company.phone}`} translate="no">{company.phone}</a>
+   <dl><dt>본사 · 공장</dt><dd>{company.address}<br/>(대흥리 460-13) · 우편번호 {company.postal}</dd><dt>법인</dt><dd>{company.name}<br/><span translate="no">{company.en}</span></dd></dl>
    <a class="text-link" href={`https://map.naver.com/p/search/${encodeURIComponent(company.address)}`} target="_blank" rel="noopener noreferrer">네이버 지도에서 위치 보기</a>
   </aside>
   <form id="inquiry-form" method="post" action="/api/inquiries" novalidate>
    <div class="form-grid">
-    <div class="form-field"><label for="company">회사 · 매장명 <span>*</span></label><input id="company" name="company" autocomplete="organization" placeholder="회사 또는 매장명" required maxlength="100"/></div>
-    <div class="form-field"><label for="name">담당자 <span>*</span></label><input id="name" name="name" autocomplete="name" placeholder="성함" required maxlength="60"/></div>
-    <div class="form-field"><label for="phone">연락처 <span>*</span></label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="010-0000-0000" pattern="[0-9+\(\)\s\-]{9,24}" required maxlength="24"/></div>
-    <div class="form-field"><label for="email">이메일</label><input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" maxlength="200"/></div>
-    <div class="form-field"><label for="type">문의 종류 <span>*</span></label><select id="type" name="type" required><option value="">선택해 주세요</option><option value="supply">제품 구매 · 대량 납품</option><option value="oem">OEM · ODM 전용유 개발</option><option value="distribution">유통 · 수거 연계</option><option value="quality">품질 자료 요청</option><option value="other">기타</option></select></div>
+    <div class="form-field"><label for="company">회사 · 매장명 <span aria-hidden="true">*</span></label><input id="company" name="company" autocomplete="organization" placeholder="예: 한산치킨 천안점" required maxlength="100" aria-describedby="company-error" aria-required="true"/><p class="field-error" id="company-error"></p></div>
+    <div class="form-field"><label for="name">담당자 <span aria-hidden="true">*</span></label><input id="name" name="name" autocomplete="name" placeholder="예: 김담당" required maxlength="60" aria-describedby="name-error" aria-required="true"/><p class="field-error" id="name-error"></p></div>
+    <div class="form-field"><label for="phone">연락처 <span aria-hidden="true">*</span></label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="예: 010-1234-5678" pattern="[0-9+\(\)\s\-]{9,24}" required maxlength="24" aria-describedby="phone-error" aria-required="true"/><p class="field-error" id="phone-error"></p></div>
+    <div class="form-field"><label for="email">이메일</label><input id="email" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" placeholder="예: name@company.com" maxlength="200" aria-describedby="email-error"/><p class="field-error" id="email-error"></p></div>
+    <div class="form-field"><label for="type">문의 종류 <span aria-hidden="true">*</span></label><select id="type" name="type" required aria-describedby="type-error" aria-required="true"><option value="">선택해 주세요</option><option value="supply">제품 구매 · 대량 납품</option><option value="oem">OEM · ODM 전용유 개발</option><option value="distribution">유통 · 수거 연계</option><option value="quality">품질 자료 요청</option><option value="other">기타</option></select><p class="field-error" id="type-error"></p></div>
     <div class="form-field"><label for="product">관심 제품</label><select id="product" name="product"><option value="">아직 정하지 않았어요</option><option value="consult">상담 후 결정</option>{products.map(p=><option value={p.slug}>{p.name}</option>)}</select></div>
-    <div class="form-field"><label for="quantity">월 예상 사용량</label><input id="quantity" name="quantity" placeholder="예: 18L 캔 50개" maxlength="100"/></div>
-    <div class="form-field"><label for="region">납품 지역</label><input id="region" name="region" placeholder="예: 충남 천안시" maxlength="150"/></div>
-    <div class="form-field full"><label for="message">문의 내용 <span>*</span></label><textarea id="message" name="message" placeholder="주요 메뉴, 필요한 제품, 희망 납기 등을 자유롭게 적어주세요." required minlength="10" maxlength="3000"></textarea></div>
+    <div class="form-field"><label for="quantity">월 예상 사용량</label><input id="quantity" name="quantity" autocomplete="off" placeholder="예: 18L 캔 50개" maxlength="100"/></div>
+    <div class="form-field"><label for="region">납품 지역</label><input id="region" name="region" autocomplete="address-level1" placeholder="예: 충남 천안시" maxlength="150"/></div>
+    <div class="form-field full"><label for="message">문의 내용 <span aria-hidden="true">*</span></label><textarea id="message" name="message" placeholder="예: 치킨 전문점 3개 매장, 현재 카놀라유 사용 중, 월 60캔 예상, 12월부터 납품 희망" required minlength="10" maxlength="3000" aria-describedby="message-error" aria-required="true"></textarea><p class="field-error" id="message-error"></p></div>
    </div>
    <div class="honey-field" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"/></div>
-   <label class="consent"><input type="checkbox" name="consent" required/><span><a href="/privacy/" target="_blank" rel="noopener">개인정보 수집 및 이용</a>에 동의합니다. 상담을 위해 회사명, 성함, 연락처와 입력한 내용을 수집하며 상담 완료 후 1년 이내 삭제합니다.</span></label>
+   <div class="form-field"><label class="consent"><input type="checkbox" name="consent" id="consent" required aria-describedby="consent-error"/><span><a href="/privacy/" target="_blank" rel="noopener">개인정보 수집 및 이용</a>에 동의합니다. 상담을 위해 회사명, 성함, 연락처와 입력한 내용을 수집하며 상담 완료 후 1년 이내 삭제합니다.</span></label><p class="field-error" id="consent-error"></p></div>
    <button type="submit" class="button form-submit">문의 보내기</button>
-   <p class="note" style="margin-top:16px">견적, 최소 주문 수량, 납기는 상담 후 안내합니다.</p>
+   <p class="note" style="margin-top:16px">견적, 최소 주문 수량, 납기는 상담 후 안내합니다. 필수 항목은 <span aria-hidden="true">*</span>로 표시했습니다.</p>
    <noscript><p class="form-status">온라인 접수에는 JavaScript가 필요합니다. 041-414-5153으로 전화해 주세요.</p></noscript>
    <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
   </form>
@@ -37,18 +37,30 @@ import {company,products} from '../data/site.js';
  const params=new URLSearchParams(location.search);
  for(const key of ['product','type']){const el=document.querySelector<HTMLSelectElement>(`#${key}`);const value=params.get(key);if(el&&value&&Array.from(el.options).some(o=>o.value===value))el.value=value}
  if(params.has('product')){const el=document.querySelector<HTMLSelectElement>('#type');if(el&&!el.value)el.value=params.get('product')==='custom'?'oem':'supply'}
- const form=document.querySelector<HTMLFormElement>('#inquiry-form');let pending=false;let requestId=crypto.randomUUID();
- form?.addEventListener('submit',async event=>{
-  event.preventDefault();if(pending||!form.reportValidity())return;
-  pending=true;const button=form.querySelector<HTMLButtonElement>('button[type=submit]')!;const output=document.querySelector<HTMLElement>('#form-status')!;
-  button.disabled=true;button.textContent='보내는 중…';output.textContent='';output.dataset.error='false';
+
+ const form=document.querySelector<HTMLFormElement>('#inquiry-form')!;
+ const messages:Record<string,string>={company:'회사 또는 매장명을 입력해 주세요.',name:'담당자 성함을 입력해 주세요.',phone:'연락 가능한 전화번호를 숫자로 입력해 주세요.',email:'이메일 주소 형식을 확인해 주세요.',type:'문의 종류를 선택해 주세요.',message:'문의 내용을 10자 이상 적어주세요.',consent:'개인정보 수집에 동의해야 접수할 수 있습니다.'};
+ type Field=HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement;
+ const fields=Array.from(form.querySelectorAll<Field>('[aria-describedby$="-error"]'));
+ function setError(field:Field,message:string){const out=document.getElementById(field.getAttribute('aria-describedby')||'');if(out)out.textContent=message;field.setAttribute('aria-invalid',message?'true':'false')}
+ function validate(field:Field){const ok=field.checkValidity();setError(field,ok?'':messages[field.name]||'입력 내용을 확인해 주세요.');return ok}
+ fields.forEach(field=>{field.addEventListener('blur',()=>{if(field.value||field.getAttribute('aria-invalid')==='true')validate(field)});field.addEventListener('input',()=>{if(field.getAttribute('aria-invalid')==='true')validate(field)})});
+
+ let pending=false;let requestId=crypto.randomUUID();
+ form.addEventListener('submit',async event=>{
+  event.preventDefault();if(pending)return;
+  const invalid=fields.filter(field=>!validate(field));
+  const output=document.querySelector<HTMLElement>('#form-status')!;
+  if(invalid.length){output.dataset.error='true';output.textContent=`${invalid.length}개 항목을 확인해 주세요.`;invalid[0].focus();return}
+  pending=true;const button=form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+  button.setAttribute('aria-busy','true');button.textContent='보내는 중…';output.textContent='';output.dataset.error='false';
   try{
    const values=Object.fromEntries(new FormData(form));
    const response=await fetch('/api/inquiries',{method:'POST',headers:{'Content-Type':'application/json','X-Idempotency-Key':requestId},body:JSON.stringify(values),signal:AbortSignal.timeout(15000)});
    const result=await response.json();if(!response.ok)throw new Error(result.error||'문의가 접수되지 않았습니다.');
-   output.textContent=`문의를 받았습니다. 접수번호 ${result.id}. 내용을 확인한 뒤 남겨주신 연락처로 연락드리겠습니다.`;form.reset();requestId=crypto.randomUUID();
+   output.textContent=`문의를 받았습니다. 접수번호 ${result.id}. 내용을 확인한 뒤 남겨주신 연락처로 연락드리겠습니다.`;form.reset();fields.forEach(f=>setError(f,''));requestId=crypto.randomUUID();
   }catch(error){output.dataset.error='true';output.textContent=`${error instanceof Error?error.message:'연결을 확인해 주세요.'} 다시 시도하거나 041-414-5153으로 전화해 주세요.`}
-  finally{pending=false;button.disabled=false;button.textContent='문의 보내기'}
+  finally{pending=false;button.removeAttribute('aria-busy');button.textContent='문의 보내기'}
  });
  </script>
 </Layout>

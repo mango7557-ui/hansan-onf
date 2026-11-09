@@ -7,17 +7,16 @@ const org={'@type':'Organization',name:company.name,alternateName:company.en,fou
 const nav=[['회사소개','/about/'],['사업영역','/business/'],['제품안내','/products/'],['품질관리','/quality/'],['오일 가이드','/guide/']];
 ---
 <!doctype html>
-<html lang="ko">
+<html lang="ko" style="color-scheme:light">
 <head>
  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
- <title>{title} | 한산오앤에프</title><meta name="description" content={description}/><meta name="theme-color" content="#1b1612"/>
+ <title>{title} | 한산오앤에프</title><meta name="description" content={description}/><meta name="theme-color" content="#faf9f6"/>
  <meta name="robots" content="index,follow,max-image-preview:large"/>{canonical&&<link rel="canonical" href={canonical}/>}
  <meta property="og:title" content={`${title} | 한산오앤에프`}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/>
  {canonical&&<meta property="og:url" content={canonical}/>}<meta property="og:image" content={Astro.site?new URL('/images/oil-sculpture.webp',Astro.site).href:'/images/oil-sculpture.webp'}/><meta name="twitter:card" content="summary_large_image"/>
  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"/>
- {home&&<link rel="preload" as="image" href="/images/oil-sculpture.webp"/>}
  <script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@graph':[org,...schema]}).replace(/</g,'\\u003c')}/>
 </head>
 <body>
