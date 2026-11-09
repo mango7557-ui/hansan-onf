@@ -68,6 +68,21 @@ GitHub에서 내려받아 `.opencode/skills/`에 설치했습니다. 두 스킬�
 
 이후 "~하는 스킬 있어?" 류의 요청은 이 스킬의 절차(skills.sh 리더보드 확인 → CLI 검색 → 1K+ 설치·공식 출처·100★ 이상 검증 → 제시)를 따릅니다.
 
+### impeccable (2026-11-10)
+
+| 스킬 | 출처 | 내용 |
+|---|---|---|
+| impeccable 4.8.1 (엔진 v0.1.19) | [pbakaus/impeccable](https://github.com/pbakaus/impeccable) (106.7k★, Paul Bakaus) | 코딩 에이전트용 디자인 어휘. **24개 명령**: Steer(`bolder`·`quieter`·`distill`·`colorize`·`typeset`·`layout`·`animate`·`delight`·`overdrive`), Review(`critique` 점수형 UX 리뷰·`audit` P0–P3 기술 감사), Finish(`polish`·`harden`·`clarify`·`adapt`·`optimize`·`onboard`), Live(`live` 브라우저에서 요소 골라 변형 순환·`generate`), Plan(`shape`·`init`→PRODUCT.md·`document`→DESIGN.md·`extract`). **62개 결정론적 슬롭 탐지 규칙** — LLM·API 키 없이 Rust 바이너리로 실행. |
+
+공식 설치기(`npx impeccable install --agent opencode`)로 설치. skills.sh에는 미등록이지만 GitHub 별점으로 검증 통과. 사용: `/impeccable critique <대상>`, `/impeccable init`.
+
+**설치 직후 `detect` 결과** (빌드된 HTML 3개 페이지): 18건.
+- `side-tab` / `border-accent-on-rounded` ×7 — 카드 한쪽의 두꺼운 색 테두리(인용구 왼쪽 앰버 선, 안내 박스 왼쪽 선, 연락처 카드 상단 선, 지역 카드 상단 선, 푸터 상단 선). 스킬 설명: "AI 생성 UI의 가장 알아보기 쉬운 표시"
+- `cramped-padding` ×9 — 섹션 배경 위 `.container`가 좌우 inset 없이 붙음(오탐에 가까움: `.container`가 `width:min(1280px, 100% - 96px)`로 여백을 만들지만 탐지기가 padding만 봄)
+- `low-contrast` ×3 — 고정 헤더가 스크롤 시 배경 바뀌는 것을 탐지기가 읽지 못한 오탐
+- `skipped-heading` ×1 — 제품 목록 페이지 h1 → h3 (h2 없음). 실제 결함
+- `overused-font` ×1 — Instrument Serif. 흔한 폰트 목록에 포함
+
 ### hallmark (2026-11-10)
 
 | 스킬 | 출처 | 설치 수 | 내용 |
