@@ -10,8 +10,9 @@ import culinaryStudy from '../assets/culinary-study.png';
 import oilStudy from '../assets/oil-study.png';
 import soybean from '../assets/soybean-cutout.png';
 import sunflower from '../assets/sunflower-cutout.png';
+import heroPoster from '../assets/hero-poster.png';
 
-const images={'oil-sculpture':oilSculpture,'culinary-study':culinaryStudy,'oil-study':oilStudy,'soybean-cutout':soybean,'sunflower-cutout':sunflower} as const;
+const images={'oil-sculpture':oilSculpture,'culinary-study':culinaryStudy,'oil-study':oilStudy,'soybean-cutout':soybean,'sunflower-cutout':sunflower,'hero-poster':heroPoster} as const;
 type Name=keyof typeof images;
 interface Props{name:Name;alt:string;widths?:number[];sizes?:string;loading?:'eager'|'lazy';fetchpriority?:'high'|'auto';class?:string}
 const {name,alt,widths=[480,768,1024,1400],sizes='(max-width: 760px) 100vw, 50vw',loading='lazy',fetchpriority='auto',class:className}=Astro.props;
