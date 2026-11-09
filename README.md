@@ -60,6 +60,14 @@ GitHub에서 내려받아 `.opencode/skills/`에 설치했습니다. 두 스킬�
 | frontend-design | [anthropics/skills](https://github.com/anthropics/skills) (190k★, GitHub에서 가장 많은 별을 받은 스킬 저장소) | 템플릿형 기본값 배제, 타이포그래피 중심, 한 곳에만 과감함, 사용자 행동에 응답하는 모션 |
 | motion-design | [LottieFiles/motion-design-skill](https://github.com/LottieFiles/motion-design-skill) (2.9k★, 모션 그래픽 단일 스킬 중 최다) | Premium 아키타입: 350–600ms, cubic-bezier(.4,0,.2,1), 오버슈트 0%. 3단 구조(Setup → Action → Resolution), 1/3 규칙, 3개 모션 레이어 |
 
+### find-skills (2026-11-10)
+
+| 스킬 | 출처 | 역할 |
+|---|---|---|
+| find-skills | [vercel-labs/skills](https://github.com/vercel-labs/skills) (38.7k★, skills.sh 설치 1위) | 작업에 맞는 스킬을 `npx skills find <검색어>`로 찾고 설치 수·출처·별점으로 검증하는 절차 |
+
+이후 "~하는 스킬 있어?" 류의 요청은 이 스킬의 절차(skills.sh 리더보드 확인 → CLI 검색 → 1K+ 설치·공식 출처·100★ 이상 검증 → 제시)를 따릅니다.
+
 ### 2차 추가 스킬 (2026-11-09 저녁)
 
 | 스킬 | 출처 | 역할 |
