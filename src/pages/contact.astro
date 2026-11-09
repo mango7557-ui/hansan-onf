@@ -63,7 +63,9 @@ const {company,products}=await loadContent();
    // Primary: Firestore (works on static hosting). Rules validate shape; only admins can read.
    const payload={company:values.company.trim(),name:values.name.trim(),phone:values.phone.trim(),email:(values.email||'').trim(),type:values.type,product:values.product||'',quantity:(values.quantity||'').trim(),region:(values.region||'').trim(),message:values.message.trim(),consent:true,status:'new',source:location.host,createdAt:serverTimestamp()};
    let id:string;
-   try{id=(await addDoc(collection(db,'inquiries'),payload)).id}
+   // Firestore SDK queues writes offline and never rejects — race it against a timeout so we can fall back.
+   const withTimeout=<T,>(pr:Promise<T>,ms:number)=>Promise.race([pr,new Promise<never>((_,rej)=>setTimeout(()=>rej(new Error('firestore-timeout')),ms))]);
+   try{id=(await withTimeout(addDoc(collection(db,'inquiries'),payload),6000)).id}
    catch(fsErr){
     // Fallback: local Node server (npm start) when Firestore is unreachable.
     const response=await fetch('/api/inquiries',{method:'POST',headers:{'Content-Type':'application/json','X-Idempotency-Key':requestId},body:JSON.stringify(values),signal:AbortSignal.timeout(15000)}).catch(()=>null);

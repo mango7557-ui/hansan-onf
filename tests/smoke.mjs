@@ -41,9 +41,9 @@ try{
  await page.goto(base+'/products/');await page.screenshot({path:'artifacts/products-mobile.png',fullPage:true});
  await page.setViewportSize({width:1440,height:1000});await page.screenshot({path:'artifacts/products-desktop.png',fullPage:true});await page.goto(base+'/contact/');await page.screenshot({path:'artifacts/contact-desktop.png',fullPage:true});await page.setViewportSize({width:390,height:844});
  console.log('PASS: 390px/768px responsive pages and bottom tab bar');
- await page.goto(base+'/contact/?product=soybean');assert.equal(await page.locator('#product').inputValue(),'soybean');assert.equal(await page.locator('#type').inputValue(),'supply');
+ await page.route(/firestore\.googleapis\.com/,r=>r.abort());await page.goto(base+'/contact/?product=soybean');assert.equal(await page.locator('#product').inputValue(),'soybean');assert.equal(await page.locator('#type').inputValue(),'supply');
  await page.locator('#company').fill('테스트 회사');await page.locator('#name').fill('테스트 담당자');await page.locator('#phone').fill('010-1234-5678');await page.locator('#email').fill('test@example.com');await page.locator('#message').fill('테스트 데이터입니다. 실제 영업 문의가 아닙니다.');await page.locator('[name="consent"]').check();await page.getByRole('button',{name:'문의 보내기'}).click();await page.waitForFunction(()=>document.querySelector('#form-status').textContent.includes('접수번호'));
- const files=await readdir(dataDir);assert.equal(files.length,1);const saved=JSON.parse(await readFile(path.join(dataDir,files[0]),'utf8'));assert.equal(saved.company,'테스트 회사');assert.equal(saved.consent,true);
+ await page.unroute(/firestore\.googleapis\.com/);const files=await readdir(dataDir);assert.equal(files.length,1,'browser submission fell back to local server when Firestore is blocked');const saved=JSON.parse(await readFile(path.join(dataDir,files[0]),'utf8'));assert.equal(saved.company,'테스트 회사');assert.equal(saved.consent,true);
  const body={company:'API 테스트',name:'검증',phone:'010-1234-5678',type:'supply',message:'서버 검증용 테스트 문의 내용입니다.',consent:'on'};const key=randomUUID();
  const send=(data,headers={})=>fetch(base+'/api/inquiries',{method:'POST',headers:{'Content-Type':'application/json','X-Idempotency-Key':key,...headers},body:JSON.stringify(data)});
  let r=await send({...body,consent:false});assert.equal(r.status,400);
