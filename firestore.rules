@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Only UIDs present in /admins may write site content or read inquiries.
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // /admins/{uid} — membership list. Nobody can write it from the client;
+    // it is seeded once via the Admin SDK / console.
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    // Site content: public read, admin write.
+    match /site/{doc} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /products/{slug} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /faqs/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Inquiries: anyone may create one (with a strict shape); only admins may read/update.
+    match /inquiries/{id} {
+      allow create: if request.resource.data.keys().hasOnly([
+          'company','name','phone','email','type','product','quantity','region','message',
+          'consent','createdAt','status','source'
+        ])
+        && request.resource.data.company is string && request.resource.data.company.size() > 0 && request.resource.data.company.size() <= 100
+        && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 60
+        && request.resource.data.phone is string && request.resource.data.phone.size() >= 9 && request.resource.data.phone.size() <= 24
+        && request.resource.data.message is string && request.resource.data.message.size() >= 10 && request.resource.data.message.size() <= 3000
+        && request.resource.data.type in ['supply','oem','distribution','quality','other']
+        && request.resource.data.consent == true
+        && request.resource.data.status == 'new'
+        && request.resource.data.createdAt == request.time;
+      allow read, update: if isAdmin();
+      allow delete: if false;
+    }
+  }
+}

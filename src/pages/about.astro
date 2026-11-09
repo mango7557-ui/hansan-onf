@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
-import {company} from '../data/site.js';
+import {loadContent} from '../data/content.ts';
+const {company}=await loadContent();
 ---
 <Layout title="회사소개 · 식물성 유지 제조 기업" description="2023년 설립한 한산오앤에프의 경영 철학, 회사 정보와 연혁을 확인하세요. 충남 천안에서 식물성 유지 제조·소분과 프랜차이즈 맞춤 전용유 개발을 이어갑니다.">
  <PageHero label="회사소개" title="기본을 지키는 일이<br/>가장 큰 경쟁력이라고 믿습니다." crumb="회사소개" description="깨끗한 환경과 청결한 위생관리로 더 나은 식문화를 만드는 일. 한산오앤에프는 매일의 주방에서 그 가치를 이어갑니다."/>

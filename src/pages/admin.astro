@@ -1,0 +1,131 @@
+---
+// Admin panel. Shell is static HTML; all data access happens client-side through the Firebase SDK
+// so Firestore rules (not this page) are the actual security boundary.
+import '../styles/global.css';
+import '../styles/admin.css';
+---
+<!doctype html>
+<html lang="ko" style="color-scheme:light">
+<head>
+ <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <title>관리자 | 한산오앤에프</title>
+ <meta name="robots" content="noindex,nofollow"/>
+ <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+ <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"/>
+</head>
+<body class="admin-body">
+
+ <!-- ── Login ─────────────────────────────────────────── -->
+ <section id="login" class="admin-login" hidden>
+  <form id="login-form" class="admin-card" novalidate>
+   <a href="/" class="brand" aria-label="사이트로 돌아가기">한산오앤에프<small>Hansan O&F</small></a>
+   <h1>관리자 로그인</h1>
+   <p class="muted">사이트 내용을 수정하려면 로그인하세요.</p>
+   <div class="form-field"><label for="login-email">이메일</label><input id="login-email" type="email" autocomplete="username" inputmode="email" spellcheck="false" required value="admin@hansan-onf.kr"/></div>
+   <div class="form-field"><label for="login-password">비밀번호</label><input id="login-password" type="password" autocomplete="current-password" required/></div>
+   <button type="submit" class="button" style="width:100%">로그인</button>
+   <p id="login-error" class="field-error" role="alert"></p>
+   <p class="note" style="margin-top:20px"><a class="text-link" href="/">← 사이트로 돌아가기</a></p>
+  </form>
+ </section>
+
+ <!-- ── App ─────────────────────────────────────────── -->
+ <div id="app" class="admin-app" hidden>
+  <header class="admin-header">
+   <a href="/" class="brand">한산오앤에프<small>관리자</small></a>
+   <nav class="admin-tabs" role="tablist" aria-label="관리 메뉴">
+    <button role="tab" aria-selected="true" aria-controls="panel-inquiries" id="tab-inquiries">문의 접수 <span id="inquiry-badge" class="badge" hidden></span></button>
+    <button role="tab" aria-selected="false" aria-controls="panel-home" id="tab-home">메인 문구</button>
+    <button role="tab" aria-selected="false" aria-controls="panel-products" id="tab-products">제품</button>
+    <button role="tab" aria-selected="false" aria-controls="panel-faqs" id="tab-faqs">FAQ</button>
+    <button role="tab" aria-selected="false" aria-controls="panel-company" id="tab-company">회사 정보</button>
+    <button role="tab" aria-selected="false" aria-controls="panel-account" id="tab-account">계정</button>
+   </nav>
+   <div class="admin-user"><span id="user-email" class="muted"></span><button id="logout" class="button ghost small">로그아웃</button></div>
+  </header>
+
+  <main class="admin-main">
+   <div id="status" class="admin-status" role="status" aria-live="polite"></div>
+
+   <!-- 문의 접수 -->
+   <section id="panel-inquiries" role="tabpanel" aria-labelledby="tab-inquiries">
+    <div class="panel-head"><h2>문의 접수</h2><div class="actions"><select id="inquiry-filter" aria-label="상태 필터"><option value="all">전체</option><option value="new" selected>새 문의</option><option value="in-progress">상담 중</option><option value="done">완료</option></select><button id="inquiry-refresh" class="button ghost small">새로고침</button></div></div>
+    <div id="inquiry-list" class="inquiry-list"></div>
+   </section>
+
+   <!-- 메인 문구 -->
+   <section id="panel-home" role="tabpanel" aria-labelledby="tab-home" hidden>
+    <form id="form-home" class="edit-form">
+     <div class="panel-head"><h2>메인 문구</h2><button type="submit" class="button">저장</button></div>
+     <div class="form-field"><label for="h-kicker">히어로 상단 문구</label><input id="h-kicker" name="heroKicker" maxlength="40"/></div>
+     <div class="form-field"><label for="h-title">히어로 헤드라인 <small class="muted">(줄바꿈 = 줄 나눔, 3줄 권장)</small></label><textarea id="h-title" name="heroTitle" rows="3" maxlength="60"></textarea></div>
+     <div class="form-field"><label for="h-lede">히어로 설명</label><textarea id="h-lede" name="heroLede" rows="3" maxlength="200"></textarea></div>
+     <div class="form-field"><label for="h-intro-t">소개 제목 <small class="muted">(줄바꿈 = 줄 나눔)</small></label><textarea id="h-intro-t" name="introTitle" rows="2" maxlength="80"></textarea></div>
+     <div class="form-field"><label for="h-intro-b">소개 본문 <small class="muted">(빈 줄 = 문단 나눔)</small></label><textarea id="h-intro-b" name="introBody" rows="6" maxlength="800"></textarea></div>
+     <div class="form-field"><label for="h-closing">하단 문의 문구</label><textarea id="h-closing" name="closingTitle" rows="2" maxlength="120"></textarea></div>
+    </form>
+   </section>
+
+   <!-- 제품 -->
+   <section id="panel-products" role="tabpanel" aria-labelledby="tab-products" hidden>
+    <div class="panel-head"><h2>제품</h2><p class="muted">제품을 선택해 수정하세요. 저장하면 다음 배포에 반영됩니다.</p></div>
+    <div class="split">
+     <ul id="product-list" class="side-list" role="listbox" aria-label="제품 목록"></ul>
+     <form id="form-product" class="edit-form" hidden>
+      <input type="hidden" name="slug"/>
+      <div class="form-field"><label for="p-name">제품명</label><input id="p-name" name="name" required maxlength="40"/></div>
+      <div class="form-field"><label for="p-en">영문명</label><input id="p-en" name="en" maxlength="40"/></div>
+      <div class="form-field"><label for="p-type">한 줄 소개</label><input id="p-type" name="type" maxlength="60"/></div>
+      <div class="form-field"><label for="p-desc">설명</label><textarea id="p-desc" name="desc" rows="4" maxlength="400"></textarea></div>
+      <div class="form-field"><label for="p-ingredient">원재료</label><input id="p-ingredient" name="ingredient" maxlength="120"/></div>
+      <div class="form-field"><label for="p-standard">규격 기준</label><input id="p-standard" name="standard" maxlength="60"/></div>
+      <div class="form-field"><label for="p-allergy">알레르기</label><input id="p-allergy" name="allergy" maxlength="60"/></div>
+      <div class="form-field"><label for="p-use">잘 맞는 메뉴 <small class="muted">(쉼표로 구분)</small></label><input id="p-use" name="use" maxlength="120"/></div>
+      <div class="form-field"><label for="p-category">분류</label><select id="p-category" name="category"><option value="frying">튀김 · 범용</option><option value="bakery">베이커리</option><option value="stir">중식 · 볶음</option><option value="custom">맞춤 전용유</option></select></div>
+      <div class="actions"><button type="submit" class="button">저장</button><span class="note">제품 추가·삭제와 사진 교체는 개발 담당에게 요청하세요.</span></div>
+     </form>
+    </div>
+   </section>
+
+   <!-- FAQ -->
+   <section id="panel-faqs" role="tabpanel" aria-labelledby="tab-faqs" hidden>
+    <div class="panel-head"><h2>자주 묻는 질문</h2><button id="faq-add" class="button ghost small">질문 추가</button></div>
+    <div id="faq-list" class="faq-edit-list"></div>
+   </section>
+
+   <!-- 회사 정보 -->
+   <section id="panel-company" role="tabpanel" aria-labelledby="tab-company" hidden>
+    <form id="form-company" class="edit-form">
+     <div class="panel-head"><h2>회사 정보</h2><button type="submit" class="button">저장</button></div>
+     <div class="form-grid">
+      <div class="form-field"><label for="c-name">법인명</label><input id="c-name" name="name" maxlength="60"/></div>
+      <div class="form-field"><label for="c-en">영문명</label><input id="c-en" name="en" maxlength="60"/></div>
+      <div class="form-field"><label for="c-phone">대표전화</label><input id="c-phone" name="phone" type="tel" inputmode="tel" maxlength="20"/></div>
+      <div class="form-field"><label for="c-ceo">대표자</label><input id="c-ceo" name="ceo" maxlength="40"/></div>
+      <div class="form-field full"><label for="c-address">주소</label><input id="c-address" name="address" maxlength="120"/></div>
+      <div class="form-field"><label for="c-postal">우편번호</label><input id="c-postal" name="postal" inputmode="numeric" maxlength="6"/></div>
+      <div class="form-field"><label for="c-tax">사업자등록번호</label><input id="c-tax" name="tax" maxlength="14"/></div>
+     </div>
+    </form>
+   </section>
+
+   <!-- 계정 -->
+   <section id="panel-account" role="tabpanel" aria-labelledby="tab-account" hidden>
+    <form id="form-password" class="edit-form narrow">
+     <div class="panel-head"><h2>비밀번호 변경</h2></div>
+     <p class="note" style="margin-bottom:20px">초기 비밀번호(1234)는 반드시 변경하세요. 6자 이상이어야 합니다.</p>
+     <div class="form-field"><label for="pw-current">현재 비밀번호</label><input id="pw-current" type="password" autocomplete="current-password" required/></div>
+     <div class="form-field"><label for="pw-new">새 비밀번호</label><input id="pw-new" type="password" autocomplete="new-password" minlength="6" required/></div>
+     <div class="form-field"><label for="pw-confirm">새 비밀번호 확인</label><input id="pw-confirm" type="password" autocomplete="new-password" minlength="6" required/></div>
+     <button type="submit" class="button">비밀번호 변경</button>
+    </form>
+   </section>
+  </main>
+
+  <footer class="admin-footer"><p class="note">변경 사항은 저장 즉시 데이터베이스에 반영되며, 공개 사이트에는 다음 배포 때 표시됩니다. 배포: <code>npm run build && firebase deploy</code></p></footer>
+ </div>
+
+ <script src="../scripts/admin.ts"></script>
+</body>
+</html>

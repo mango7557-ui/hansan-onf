@@ -210,6 +210,10 @@ h3{font-size:22px;font-weight:650;letter-spacing:-.02em;line-height:1.4}
 .footer{background:var(--espresso);color:var(--on-espresso-muted);padding:72px 0 32px;border-top:4px solid var(--amber)}
 .footer-top{display:flex;justify-content:space-between;gap:40px;align-items:start;padding-bottom:40px;border-bottom:1px solid var(--line-dark)}
 .footer .brand{color:var(--on-espresso)}
+.footer-brand{display:inline-flex;align-items:center;gap:12px;transition:color var(--quick) var(--ease)}
+.footer-brand .brand-icon{width:40px;height:40px;flex:none;transition:transform var(--standard) var(--ease)}
+.footer-brand:hover{color:var(--amber)}
+.footer-brand:hover .brand-icon{transform:rotate(-8deg) scale(1.08)}
 .footer-links{display:flex;gap:28px;font-size:15px}
 .footer-links a:hover{color:var(--amber)}
 .footer-bottom{display:flex;justify-content:space-between;gap:32px;padding:32px 0;font-size:14px;line-height:1.8}

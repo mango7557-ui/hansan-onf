@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
-import {products,faqs} from '../data/site.js';
+import {loadContent} from '../data/content.ts';
+const {products,faqs}=await loadContent();
 const schema=[{'@type':'FAQPage',mainEntity:faqs.map(f=>({'@type':'Question',name:f.q,acceptedAnswer:{'@type':'Answer',text:f.a}}))}];
 ---
 <Layout title="업소용 식용유 선택 가이드 · 제품 비교와 FAQ" description="콩식용유, 카놀라유, 해바라기유, 옥수수유를 어떻게 선택할까요? 업소용 식용유 18L의 용도별 비교, OEM 개발 절차, 주문·배송 관련 자주 묻는 질문을 확인하세요." schema={schema}>

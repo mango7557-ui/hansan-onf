@@ -2,7 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import PageHero from '../../components/PageHero.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import {products} from '../../data/site.js';
+import {loadContent} from '../../data/content.ts';
+const {products}=await loadContent();
 ---
 <Layout title="제품안내 · 업소용 식용유 18L" description="한산 프리미엄 콩식용유·카놀라유·해바라기유·옥수수유 18L와 OEM 맞춤 전용유를 용도별로 비교하세요. 원재료, 포장 규격, 납품 상담을 확인할 수 있습니다.">
  <PageHero label="제품안내" title="매일의 조리부터<br/>브랜드의 시그니처 메뉴까지." crumb="제품안내" description="사용 환경과 조리 목적에 맞는 한산의 유지류를 골라보세요."><button id="print-catalog" class="button ghost">카탈로그 인쇄 · PDF 저장</button></PageHero>

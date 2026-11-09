@@ -1,5 +1,6 @@
-import {company,products} from '../data/site.js';
-export function GET(){
+import {loadContent} from '../data/content.ts';
+export async function GET(){
+ const {company,products}=await loadContent();
  const text=`# 한산오앤에프 / HANSAN O&F
 
 > 식물성 유지 제조·소분, 브랜드 맞춤 전용유 개발 및 전국 유통 연계 기업.
