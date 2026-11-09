@@ -53,7 +53,8 @@ h3{font-size:22px;font-weight:650;letter-spacing:-.02em;line-height:1.4}
 /* links: underline grows on hover (user-triggered, quick) */
 .text-link{position:relative;display:inline-block;padding-bottom:3px;font-weight:600;color:var(--graphite);background:linear-gradient(currentColor,currentColor) no-repeat left bottom/100% 1px;transition:color var(--quick) var(--ease),background-size var(--quick) var(--ease)}
 .text-link:hover{color:var(--amber-deep);background-size:0 1px}
-.dark .text-link{color:var(--on-espresso)}.dark .text-link:hover{color:var(--amber)}
+.dark .text-link,.hero .text-link,.page-hero .text-link,.footer .text-link,.contact-card .text-link{color:var(--amber)}
+.dark .text-link:hover,.hero .text-link:hover,.page-hero .text-link:hover,.footer .text-link:hover,.contact-card .text-link:hover{color:var(--amber-bright)}
 .button{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border-radius:2px;font-weight:600;font-size:15px;background:var(--espresso);color:var(--milk);transition:background var(--quick) var(--ease),transform 120ms var(--ease),color var(--quick) var(--ease)}
 .button:hover{background:var(--amber-deep)}
 .button.amber{background:var(--amber-deep);color:#fff}
@@ -61,8 +62,8 @@ h3{font-size:22px;font-weight:650;letter-spacing:-.02em;line-height:1.4}
 .button:active{transform:scale(.985)}
 .button.ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 1px var(--line)}
 .button.ghost:hover{background:var(--milk-2);color:var(--graphite)}
-.dark .button{background:var(--amber);color:var(--espresso)}
-.dark .button:hover{background:var(--amber-bright)}
+.dark .button,.hero .button,.page-hero .button:not(.ghost){background:var(--amber);color:var(--espresso)}
+.dark .button:hover,.hero .button:hover,.page-hero .button:not(.ghost):hover{background:var(--amber-bright)}
 .dark .button.ghost{background:transparent;color:var(--on-espresso);box-shadow:inset 0 0 0 1px var(--line-dark)}
 .dark .button.ghost:hover{background:#ffffff12;color:var(--amber)}
 .actions{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center}
