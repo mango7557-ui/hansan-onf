@@ -365,6 +365,25 @@ h3{font-size:22px;font-weight:650;letter-spacing:-.02em;line-height:1.4}
 .privacy h2{font-size:22px;margin:36px 0 12px}
 .privacy p{color:var(--muted);line-height:1.85}
 
+
+/* ── Pointer interactions (desktop, fine pointer, motion allowed) ───
+   Driven by src/scripts/pointer.ts with GSAP quickTo. CSS here only
+   declares layers and will-change for the elements that actually move. */
+.cursor-halo{position:fixed;left:0;top:0;z-index:9999;width:36px;height:36px;border-radius:50%;pointer-events:none;border:1.5px solid var(--amber-deep);background:rgba(201,154,75,.08);mix-blend-mode:multiply;will-change:transform,opacity;transition:border-color var(--quick) var(--ease),background-color var(--quick) var(--ease)}
+.cursor-halo.on-dark{border-color:var(--amber);background:rgba(201,154,75,.14);mix-blend-mode:screen}
+.cursor-halo.is-active{border-width:1px;background:rgba(201,154,75,.18)}
+.has-pointer-fx .button,.has-pointer-fx .header-contact,.has-pointer-fx .hero-video-toggle,.has-pointer-fx .back-top,.has-pointer-fx .collection-tabs [role="tab"],.has-pointer-fx .filter-button{will-change:transform}
+.has-pointer-fx .product-art,.has-pointer-fx .guide-cover,.has-pointer-fx .collection-visual,.has-pointer-fx .detail-visual{will-change:transform;transform-style:preserve-3d}
+.has-pointer-fx .product-card:hover .product-art img{transform:none}
+.has-pointer-fx .product-card:hover .product-art.is-material[data-slug] img{transform:none}
+.has-pointer-fx .product-card:hover .product-art.is-material[data-slug=canola] img{transform:scale(1.25)}
+.has-pointer-fx .product-card:hover .product-art.is-material[data-slug=corn] img{transform:scale(1.5) rotate(180deg)}
+.has-pointer-fx .product-card:hover .product-art.is-material[data-slug=custom] img{transform:scale(1.9)}
+.has-pointer-fx .product-card:hover .product-art.is-material[data-slug=greenmarket] img{transform:scale(1.15) scaleX(-1)}
+.has-pointer-fx .guide-cover:hover img{transform:none}
+.hero-glow.is-tracking{animation-play-state:paused}
+.has-pointer-fx .hero-glow{will-change:transform}
+
 /* ── Responsive ───────────────────────────────────── */
 @media (max-width:1100px){
   .container{width:calc(100% - 64px)}

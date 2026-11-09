@@ -34,6 +34,7 @@ const nav=[['회사소개','/about/'],['사업영역','/business/'],['제품안�
   <p class="copyright">© {new Date().getFullYear()} Hansan O&F Co., Ltd.</p>
  </div></footer>
  <a class="back-top" href="#main" aria-label="맨 위로">↑</a>
+ <script src="../scripts/pointer.ts"></script>
  <script>
  const header=document.querySelector('.site-header');
  const updateHeader=()=>{header?.classList.toggle('scrolled',window.scrollY>40);document.querySelector('.back-top')?.classList.toggle('visible',window.scrollY>700)};
