@@ -68,6 +68,21 @@ GitHub에서 내려받아 `.opencode/skills/`에 설치했습니다. 두 스킬�
 
 이후 "~하는 스킬 있어?" 류의 요청은 이 스킬의 절차(skills.sh 리더보드 확인 → CLI 검색 → 1K+ 설치·공식 출처·100★ 이상 검증 → 제시)를 따릅니다.
 
+### find-skills로 찾아 설치한 스킬 (2026-11-10)
+
+`npx skills find`로 seo·astro·firebase·korean·performance·schema·landing·form·image 9개 키워드를 검색하고, find-skills 검증 기준(설치 1K+, 공식 출처, 저장소 100★+)을 통과한 것만 설치했습니다.
+
+| 스킬 | 출처 | 설치 수 | 반영 |
+|---|---|---|---|
+| schema | coreyhaines31/marketingskills (59k★) | 86.6K | Organization에 logo·contactPoint·knowsAbout·@id, WebSite 노드, Product에 image·offers·sku·manufacturer. schema.org 검증기 오류 0 |
+| ai-seo | 〃 | 161K | llms.txt를 인용 가능한 한 줄 사실 중심으로 재작성, 섹션마다 40–60자 독립 답변 블록을 둔 llms-full.txt 신설 |
+| seo-audit | 〃 | 249.8K | 8개 페이지 title/description/h1/canonical/og 점검 → 전부 통과 |
+| web-perf | cloudflare/skills (3.3k★) | 122.5K | 헤더·압축·캐시 점검(전부 br/gzip, immutable), Pretendard Bold·Regular woff2 preload 추가 |
+| firebase-auth-basics, firebase-hosting-basics | firebase/agent-skills (507★) | 182K / 177K | 관리자 인증·호스팅 설정 참고용 |
+| korean-spell-check | nomadamas/k-skill (8.4k★) | 11.6K | 전체 한글 문구 흔한 오탈자 스캔 → 0건 |
+
+탈락: astrolicious/agent-skills(13★), autonnel/autonnel-skills(8★), 101-skills/superpowers(22★) — 별점 기준 미달.
+
 ### 2차 추가 스킬 (2026-11-09 저녁)
 
 | 스킬 | 출처 | 역할 |

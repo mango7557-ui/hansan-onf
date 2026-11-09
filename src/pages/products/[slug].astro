@@ -6,7 +6,11 @@ import {loadContent} from '../../data/content.ts';
 export async function getStaticPaths(){const {products}=await loadContent();return products.map(product=>({params:{slug:product.slug},props:{product}}))}
 const {product:p}=Astro.props;
 const {products}=await loadContent();
-const schema=[{'@type':'Product',name:`한산 ${p.name}${p.slug==='custom'?'':' 18L'}`,description:p.desc,brand:{'@type':'Brand',name:'한산'},category:'업소용 식물성 식용유',size:p.slug==='custom'?'18L 캔 / 대용량 벌크':'18L',material:p.ingredient,additionalProperty:[{'@type':'PropertyValue',name:'적용 규격',value:p.standard}]},...(Astro.site?[{'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'홈',item:Astro.site.href},{'@type':'ListItem',position:2,name:'제품안내',item:new URL('/products/',Astro.site).href},{'@type':'ListItem',position:3,name:p.name,item:new URL(`/products/${p.slug}/`,Astro.site).href}]}]:[])];
+const imgPath=p.image?`/images/${p.slug}-cutout.webp`:'/images/oil-study.webp';
+const schema=[{'@type':'Product',name:`한산 ${p.name}${p.slug==='custom'?'':' 18L'}`,description:p.desc,sku:`HS-${p.slug.toUpperCase()}-18L`,brand:{'@type':'Brand',name:'한산'},manufacturer:Astro.site?{'@id':`${Astro.site.href}#organization`}:undefined,category:'업소용 식물성 식용유',size:p.slug==='custom'?'18L 캔 / 대용량 벌크':'18L',material:p.ingredient,
+ ...(Astro.site?{image:new URL(imgPath,Astro.site).href,url:new URL(`/products/${p.slug}/`,Astro.site).href}:{}),
+ offers:{'@type':'Offer',availability:'https://schema.org/InStock',priceSpecification:{'@type':'PriceSpecification',priceCurrency:'KRW',description:'물량·납품 조건별 견적'},eligibleCustomerType:'https://schema.org/Business',areaServed:'KR',seller:Astro.site?{'@id':`${Astro.site.href}#organization`}:undefined,...(Astro.site?{url:new URL(`/contact/?product=${p.slug}`,Astro.site).href}:{})},
+ additionalProperty:[{'@type':'PropertyValue',name:'적용 규격',value:p.standard},{'@type':'PropertyValue',name:'알레르기',value:p.allergy},{'@type':'PropertyValue',name:'적합 메뉴',value:p.use.join(', ')}]},...(Astro.site?[{'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'홈',item:Astro.site.href},{'@type':'ListItem',position:2,name:'제품안내',item:new URL('/products/',Astro.site).href},{'@type':'ListItem',position:3,name:p.name,item:new URL(`/products/${p.slug}/`,Astro.site).href}]}]:[])];
 ---
 <Layout title={`${p.name} ${p.slug==='custom'?'OEM·ODM':'18L'} · 제품 규격`} description={p.desc} schema={schema}>
  <section class="section container">

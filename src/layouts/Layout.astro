@@ -4,7 +4,15 @@ import {loadContent} from '../data/content.ts';
 const {company}=await loadContent();
 const {title='프랜차이즈 전용유 개발과 업소용 식용유 제조',description='한산오앤에프는 프랜차이즈 전용유 개발(OEM·ODM)과 업소용 식용유 제조·소분, 전국 공급을 함께 합니다. 콩식용유·카놀라유·해바라기유·옥수수유 18L 제품과 납품 상담을 확인하세요.',schema=[],home=false}=Astro.props;
 const canonical=Astro.site ? new URL(Astro.url.pathname,Astro.site).href : undefined;
-const org={'@type':'Organization',name:company.name,alternateName:company.en,foundingDate:company.founded,telephone:company.phone,taxID:company.tax,address:{'@type':'PostalAddress',streetAddress:company.address,postalCode:company.postal,addressCountry:'KR'},...(Astro.site?{url:Astro.site.href}: {})};
+const siteUrl=Astro.site?.href;
+const org={'@type':'Organization','@id':siteUrl?`${siteUrl}#organization`:undefined,name:company.name,alternateName:company.en,legalName:company.name,foundingDate:company.founded,telephone:company.phone,taxID:company.tax,
+ address:{'@type':'PostalAddress',streetAddress:company.address,addressLocality:'천안시',addressRegion:'충청남도',postalCode:company.postal,addressCountry:'KR'},
+ ...(siteUrl?{url:siteUrl,logo:{'@type':'ImageObject',url:new URL('/favicon.svg',siteUrl).href},image:new URL('/images/oil-sculpture.webp',siteUrl).href}:{}),
+ contactPoint:[{'@type':'ContactPoint',telephone:company.phone,contactType:'sales',areaServed:'KR',availableLanguage:['ko']}],
+ areaServed:{'@type':'Country',name:'대한민국'},
+ knowsAbout:['프랜차이즈 전용유 개발','식용유 OEM','식용유 ODM','업소용 식용유','콩식용유','카놀라유','해바라기유','옥수수유','식물성 유지 제조'],
+ description:'충남 천안에서 식물성 유지를 제조·소분하고, 프랜차이즈 브랜드에 맞는 전용유를 개발해 전국에 공급하는 기업.'};
+const website=siteUrl?{'@type':'WebSite','@id':`${siteUrl}#website`,url:siteUrl,name:'한산오앤에프',inLanguage:'ko-KR',publisher:{'@id':`${siteUrl}#organization`}}:null;
 const nav=[['회사소개','/about/'],['전용유 개발','/business/'],['제품안내','/products/'],['품질관리','/quality/'],['오일 가이드','/guide/']];
 ---
 <!doctype html>
@@ -17,8 +25,10 @@ const nav=[['회사소개','/about/'],['전용유 개발','/business/'],['제품
  {canonical&&<meta property="og:url" content={canonical}/>}<meta property="og:image" content={Astro.site?new URL('/images/oil-sculpture.webp',Astro.site).href:'/images/oil-sculpture.webp'}/><meta name="twitter:card" content="summary_large_image"/>
  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+ <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Bold.woff2"/>
+ <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Regular.woff2"/>
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"/>
- <script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@graph':[org,...schema]}).replace(/</g,'\\u003c')}/>
+ <script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@graph':[org,...(website?[website]:[]),...schema]}).replace(/</g,'\\u003c')}/>
 </head>
 <body>
  <a class="skip-link" href="#main">본문 바로가기</a>
