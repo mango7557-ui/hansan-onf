@@ -68,6 +68,14 @@ GitHub에서 내려받아 `.opencode/skills/`에 설치했습니다. 두 스킬�
 
 이후 "~하는 스킬 있어?" 류의 요청은 이 스킬의 절차(skills.sh 리더보드 확인 → CLI 검색 → 1K+ 설치·공식 출처·100★ 이상 검증 → 제시)를 따릅니다.
 
+### hallmark (2026-11-10)
+
+| 스킬 | 출처 | 설치 수 | 내용 |
+|---|---|---|---|
+| hallmark 2.0.0 | [Nutlope/hallmark](https://github.com/Nutlope/hallmark) (51.6k★, Vercel의 Hassan El Mghari) | 97.9K | "anti-AI-slop" 디자인 스킬. 16개 **Floor** 규칙(토큰 외 색·폰트 금지, `transition: all` 금지, 로만 제목 속 이탤릭 한 단어 금지, `overflow-x: clip`, 모든 인터랙티브 요소 `:focus-visible`, 가운뎃점 메타 문자열·장식 점 금지, 보라→파랑 그라데이션·카드 속 카드·이모지 아이콘 금지, 화면당 80단어, 1280×800에서 히어로 전부 보이기 등), 51개 테마 딜러, 21개 매크로 구조, 장르 4종, `sloplint.mjs`(Floor/Reflex/Finish 3단계 린터, `--render`로 실제 브라우저 검사). |
+
+`/hallmark redesign <path>` · `/hallmark audit <path>` 슬래시 동사 지원. 설치 직후 `sloplint`로 현재 사이트를 감사한 결과: FAIL 2건(`overflow-x: clip` 부재, 스크롤 인디케이터의 가운뎃점 문자열), REFLEX 3건(`:active`/`:disabled` 상태, 비디오 poster).
+
 ### taste-skill (2026-11-10)
 
 | 스킬 | 출처 | 설치 수 | 내용 |
