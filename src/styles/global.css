@@ -84,17 +84,6 @@ h3{font-size:22px;font-weight:650;letter-spacing:-.02em;line-height:1.4}
 .header-contact:hover{background:var(--amber-deep)}
 .on-hero:not(.scrolled) .header-contact{background:var(--amber);color:var(--espresso)}
 .on-hero:not(.scrolled) .header-contact:hover{background:var(--amber-bright)}
-.menu-toggle{display:none;width:28px;height:28px;position:relative}
-.menu-toggle span{position:absolute;left:0;right:0;height:2px;background:currentColor;transition:transform var(--standard) var(--ease),top var(--standard) var(--ease)}
-.menu-toggle span:first-child{top:9px}.menu-toggle span:last-child{top:17px}
-.menu-toggle[aria-expanded=true] span:first-child{top:13px;transform:rotate(45deg)}
-.menu-toggle[aria-expanded=true] span:last-child{top:13px;transform:rotate(-45deg)}
-.mobile-nav{position:fixed;inset:84px 0 0;z-index:45;background:var(--milk);padding:24px 32px 40px;display:flex;flex-direction:column;overflow:auto;animation:menu-in var(--standard) var(--ease-out) both}
-.mobile-nav a{font-size:26px;font-weight:650;letter-spacing:-.02em;padding:18px 0;border-bottom:1px solid var(--line);animation:rise var(--standard) var(--ease-out) both}
-.mobile-nav a:nth-child(2){animation-delay:40ms}.mobile-nav a:nth-child(3){animation-delay:80ms}.mobile-nav a:nth-child(4){animation-delay:120ms}.mobile-nav a:nth-child(5){animation-delay:160ms}.mobile-nav a:nth-child(6){animation-delay:200ms}
-.mobile-nav a:last-child{border:0;margin-top:14px;color:var(--amber-deep)}
-.menu-open{overflow:hidden}
-.menu-open .site-header{background:var(--milk);color:var(--graphite);border-color:var(--line)}
 
 /* ── Hero: the one orchestrated moment ──────────────
    Setup   0–300ms  photograph wipes in from the right
@@ -135,7 +124,6 @@ h3{font-size:22px;font-weight:650;letter-spacing:-.02em;line-height:1.4}
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes wipe-in{to{clip-path:inset(0 0 0 0)}}
 @keyframes drift{from{transform:translate(0,0)}to{transform:translate(-6%,4%)}}
-@keyframes menu-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── Intro ────────────────────────────────────────── */
 .intro{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:start}
@@ -384,6 +372,28 @@ h3{font-size:22px;font-weight:650;letter-spacing:-.02em;line-height:1.4}
 .hero-glow.is-tracking{animation-play-state:paused}
 .has-pointer-fx .hero-glow{will-change:transform}
 
+
+/* ── Mobile bottom tab bar ─────────────────────────────
+   Shown ≤1000px (where the desktop nav is hidden). Six equal tabs; active tab gets
+   amber icon + label; the call tab is always amber. Safe-area padded for notched phones. */
+.tab-bar{display:none}
+@media (max-width:1000px){
+  .tab-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:repeat(6,1fr);background:rgba(27,22,18,.96);backdrop-filter:blur(14px);border-top:1px solid var(--line-dark);padding-bottom:env(safe-area-inset-bottom)}
+  .tab-bar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:60px;padding:8px 2px;color:var(--on-espresso-muted);font-size:11px;font-weight:500;letter-spacing:-.01em;line-height:1;position:relative;transition:color var(--quick) var(--ease)}
+  .tab-bar svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .tab-bar a[aria-current=page]{color:var(--amber)}
+  .tab-bar a[aria-current=page]::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:2px;background:var(--amber);border-radius:0 0 2px 2px}
+  .tab-bar a:active{color:var(--amber-bright)}
+  .tab-bar .tab-call{color:var(--amber)}
+  .tab-bar .tab-call svg{fill:var(--amber);stroke:none}
+  .tab-bar a:focus-visible{outline-offset:-3px;outline-color:var(--amber)}
+  /* reserve space so the bar never covers content or the footer */
+  body{padding-bottom:calc(60px + env(safe-area-inset-bottom))}
+  .back-top{bottom:calc(76px + env(safe-area-inset-bottom))}
+  .hero-video-toggle{bottom:calc(16px + 0px)}
+  .header-contact{display:none}
+}
+
 /* ── Responsive ───────────────────────────────────── */
 @media (max-width:1100px){
   .container{width:calc(100% - 64px)}
@@ -400,14 +410,12 @@ h3{font-size:22px;font-weight:650;letter-spacing:-.02em;line-height:1.4}
 }
 @media (max-width:1000px){
   .desktop-nav{display:none}
-  .menu-toggle{display:block}
   .header-contact{display:none}
 }
 @media (max-width:760px){
   .container{width:calc(100% - 40px)}
   .section{padding:80px 0}
   .site-header{height:72px;padding:0 20px}
-  .mobile-nav{inset:72px 0 0}
   .brand{font-size:21px}
   .hero{grid-template-columns:1fr;min-height:auto;max-height:none}
   .hero-copy{padding:128px 20px 48px;order:2}
@@ -416,7 +424,7 @@ h3{font-size:22px;font-weight:650;letter-spacing:-.02em;line-height:1.4}
   .hero-art img{object-position:60% 45%}
   .hero h1{font-size:clamp(34px,10vw,44px)}
   .hero-lede{font-size:16px}
-  .hero-foot{position:static;padding:0 20px 40px;background:var(--espresso);order:3}
+  .hero-foot{position:static;padding:0 20px 32px;background:var(--espresso);order:3}
   .hero-video-toggle{right:16px;bottom:16px}
   .facts{grid-template-columns:1fr;margin-top:48px}
   .facts > div{padding:20px 0}
@@ -434,6 +442,8 @@ h3{font-size:22px;font-weight:650;letter-spacing:-.02em;line-height:1.4}
   .row:hover{padding-left:0}
   .closing{padding:88px 0}
   .footer-top,.footer-bottom{flex-direction:column}
+  .footer-links{flex-wrap:wrap;gap:12px 24px}
+  .footer-links a{white-space:nowrap}
   .page-hero{padding:48px 0}
   .page-intro-row{flex-direction:column;align-items:start;gap:24px}
   .timeline{grid-template-columns:1fr}
@@ -460,7 +470,7 @@ h3{font-size:22px;font-weight:650;letter-spacing:-.02em;line-height:1.4}
   .hero-lede,.hero-actions,.hero-foot{opacity:1}
 }
 @media print{
-  .site-header,.footer,.back-top,.filter-bar,.button,.breadcrumb,.mobile-nav,.skip-link{display:none!important}
+  .site-header,.footer,.back-top,.filter-bar,.button,.breadcrumb,.tab-bar,.skip-link{display:none!important}
   .container{width:100%}
   .section{padding:24px 0}
   .product-grid{grid-template-columns:repeat(3,1fr);gap:16px}
