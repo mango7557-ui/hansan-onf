@@ -2,10 +2,10 @@
 import '../styles/global.css';
 import {loadContent} from '../data/content.ts';
 const {company}=await loadContent();
-const {title='업소용 식용유 제조와 브랜드 전용유 개발',description='한산오앤에프는 업소용 식용유 제조·소분, 프랜차이즈 전용유 OEM·ODM 개발 및 전국 공급을 연결합니다. 콩식용유·카놀라유·해바라기유·옥수수유 18L 제품과 납품 상담을 확인하세요.',schema=[],home=false}=Astro.props;
+const {title='프랜차이즈 전용유 개발과 업소용 식용유 제조',description='한산오앤에프는 프랜차이즈 전용유 개발(OEM·ODM)과 업소용 식용유 제조·소분, 전국 공급을 함께 합니다. 콩식용유·카놀라유·해바라기유·옥수수유 18L 제품과 납품 상담을 확인하세요.',schema=[],home=false}=Astro.props;
 const canonical=Astro.site ? new URL(Astro.url.pathname,Astro.site).href : undefined;
 const org={'@type':'Organization',name:company.name,alternateName:company.en,foundingDate:company.founded,telephone:company.phone,taxID:company.tax,address:{'@type':'PostalAddress',streetAddress:company.address,postalCode:company.postal,addressCountry:'KR'},...(Astro.site?{url:Astro.site.href}: {})};
-const nav=[['회사소개','/about/'],['사업영역','/business/'],['제품안내','/products/'],['품질관리','/quality/'],['오일 가이드','/guide/']];
+const nav=[['회사소개','/about/'],['전용유 개발','/business/'],['제품안내','/products/'],['품질관리','/quality/'],['오일 가이드','/guide/']];
 ---
 <!doctype html>
 <html lang="ko" style="color-scheme:light">
@@ -38,7 +38,7 @@ const nav=[['회사소개','/about/'],['사업영역','/business/'],['제품안�
  </nav>
  <footer class="footer"><div class="container">
   <div class="footer-top"><a href="/admin/" class="brand footer-brand" title="관리자" aria-label="한산오앤에프 관리자 페이지"><svg class="brand-icon" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="currentColor" opacity=".12"/><path d="M32 10c-7 10-14 17-14 27a14 14 0 0 0 28 0c0-10-7-17-14-27Z" fill="var(--amber)"/><path d="M32 22c-3.5 5-7 8.5-7 13.5a7 7 0 0 0 14 0c0-5-3.5-8.5-7-13.5Z" fill="var(--espresso)" opacity=".4"/></svg>한산오앤에프<small>Hansan O&F</small></a><div class="footer-links"><a href="/about/">회사소개</a><a href="/products/">제품안내</a><a href="/contact/">오시는 길 · 문의</a><a href="/privacy/">개인정보처리방침</a></div></div>
-  <div class="footer-bottom"><div><strong>{company.name}</strong><p>대표 {company.ceo} · 사업자등록번호 {company.tax}</p><p>{company.address} ({company.postal})</p></div><a class="footer-phone" href={`tel:${company.phone}`}>{company.phone}<small>제품 및 납품 상담</small></a></div>
+  <div class="footer-bottom"><div><p class="footer-tagline">프랜차이즈 전용유 개발 · 업소용 식용유 제조 · 전국 공급</p><strong>{company.name}</strong><p>대표 {company.ceo} · 사업자등록번호 {company.tax}</p><p>{company.address} ({company.postal})</p></div><a class="footer-phone" href={`tel:${company.phone}`}>{company.phone}<small>제품 및 납품 상담</small></a></div>
   <p class="copyright">© {new Date().getFullYear()} Hansan O&F Co., Ltd.</p>
  </div></footer>
  <a class="back-top" href="#main" aria-label="맨 위로">↑</a>

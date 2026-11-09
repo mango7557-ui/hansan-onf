@@ -5,7 +5,7 @@ import {loadContent} from '../data/content.ts';
 const {company,products}=await loadContent();
 ---
 <Layout title="상담 문의 · 제품 납품 및 OEM 상담" description="한산오앤에프 식용유 대량 구매, OEM·ODM 전용유 개발, 유통 및 품질 자료 문의. 대표전화 041-414-5153, 충남 천안시 동남구 성남면 대흥1길 153-45.">
- <PageHero label="상담 문의" title="어떤 기름이 필요한지<br/>이야기해 주세요." crumb="상담 문의" description="제품을 찾고 계신가요, 브랜드만의 기름이 필요하신가요? 내용을 남겨주시면 확인 후 연락드립니다."/>
+ <PageHero label="상담 문의" title="어떤 기름이 필요한지<br/>이야기해 주세요." crumb="상담 문의" description="제품 납품이 필요하신가요, 프랜차이즈 전용유 개발을 생각 중이신가요? 내용을 남겨주시면 확인 후 연락드립니다."/>
  <section class="section container contact-layout">
   <aside class="contact-info contact-card" id="location">
    <h2>전화와 방문도 환영합니다.</h2>
@@ -20,11 +20,11 @@ const {company,products}=await loadContent();
     <div class="form-field"><label for="name">담당자 <span aria-hidden="true">*</span></label><input id="name" name="name" autocomplete="name" placeholder="예: 김담당" required maxlength="60" aria-describedby="name-error" aria-required="true"/><p class="field-error" id="name-error"></p></div>
     <div class="form-field"><label for="phone">연락처 <span aria-hidden="true">*</span></label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="예: 010-1234-5678" pattern="[0-9+\(\)\s\-]{9,24}" required maxlength="24" aria-describedby="phone-error" aria-required="true"/><p class="field-error" id="phone-error"></p></div>
     <div class="form-field"><label for="email">이메일</label><input id="email" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" placeholder="예: name@company.com" maxlength="200" aria-describedby="email-error"/><p class="field-error" id="email-error"></p></div>
-    <div class="form-field"><label for="type">문의 종류 <span aria-hidden="true">*</span></label><select id="type" name="type" required aria-describedby="type-error" aria-required="true"><option value="">선택해 주세요</option><option value="supply">제품 구매 · 대량 납품</option><option value="oem">OEM · ODM 전용유 개발</option><option value="distribution">유통 · 수거 연계</option><option value="quality">품질 자료 요청</option><option value="other">기타</option></select><p class="field-error" id="type-error"></p></div>
+    <div class="form-field"><label for="type">문의 종류 <span aria-hidden="true">*</span></label><select id="type" name="type" required aria-describedby="type-error" aria-required="true"><option value="">선택해 주세요</option><option value="supply">제품 구매 · 대량 납품</option><option value="oem">프랜차이즈 전용유 개발 (OEM·ODM)</option><option value="distribution">유통 · 수거 연계</option><option value="quality">품질 자료 요청</option><option value="other">기타</option></select><p class="field-error" id="type-error"></p></div>
     <div class="form-field"><label for="product">관심 제품</label><select id="product" name="product"><option value="">아직 정하지 않았어요</option><option value="consult">상담 후 결정</option>{products.map(p=><option value={p.slug}>{p.name}</option>)}</select></div>
     <div class="form-field"><label for="quantity">월 예상 사용량</label><input id="quantity" name="quantity" autocomplete="off" placeholder="예: 18L 캔 50개" maxlength="100"/></div>
     <div class="form-field"><label for="region">납품 지역</label><input id="region" name="region" autocomplete="address-level1" placeholder="예: 충남 천안시" maxlength="150"/></div>
-    <div class="form-field full"><label for="message">문의 내용 <span aria-hidden="true">*</span></label><textarea id="message" name="message" placeholder="예: 치킨 전문점 3개 매장, 현재 카놀라유 사용 중, 월 60캔 예상, 12월부터 납품 희망" required minlength="10" maxlength="3000" aria-describedby="message-error" aria-required="true"></textarea><p class="field-error" id="message-error"></p></div>
+    <div class="form-field full"><label for="message">문의 내용 <span aria-hidden="true">*</span></label><textarea id="message" name="message" placeholder="예: 치킨 프랜차이즈 본사, 가맹점 30곳, 현재 카놀라유 사용 중, 바삭함 유지되는 전용유 개발 희망" required minlength="10" maxlength="3000" aria-describedby="message-error" aria-required="true"></textarea><p class="field-error" id="message-error"></p></div>
    </div>
    <div class="honey-field" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"/></div>
    <div class="form-field"><label class="consent"><input type="checkbox" name="consent" id="consent" required aria-describedby="consent-error"/><span><a href="/privacy/" target="_blank" rel="noopener">개인정보 수집 및 이용</a>에 동의합니다. 상담을 위해 회사명, 성함, 연락처와 입력한 내용을 수집하며 상담 완료 후 1년 이내 삭제합니다.</span></label><p class="field-error" id="consent-error"></p></div>
