@@ -1,0 +1,7 @@
+---
+const {label,title,description,crumb}=Astro.props;
+---
+<section class="page-hero"><div class="container">
+ <nav class="breadcrumb" aria-label="현재 위치"><a href="/">홈</a><span>/</span><span aria-current="page">{crumb}</span></nav>
+ <div class="page-intro-row"><div>{label&&<span class="kicker">{label}</span>}<h1 set:html={title}/>{description&&<p class="lede">{description}</p>}</div><slot/></div>
+</div></section>

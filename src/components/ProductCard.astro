@@ -1,0 +1,11 @@
+---
+const {product:p}=Astro.props;
+---
+<a class="product-card" href={`/products/${p.slug}/`} data-category={p.category}>
+ <div class:list={['product-art',{'is-material':!p.image}]} data-slug={p.slug}>
+  {p.image?<img src={`/images/${p.slug}-cutout.webp`} alt={`한산 ${p.name} 18L 제품`} width="750" height="750" loading="lazy"/>:<><img src="/images/oil-study.webp" alt="맑은 식용유의 질감" width="1248" height="832" loading="lazy"/><span>{p.slug==='custom'?'맞춤 배합':p.name.replace('프리미엄 ','').replace('맑은 ','')}</span></>}
+ </div>
+ <h3>한산 {p.name}</h3>
+ <p>{p.use.join(', ')}</p>
+ <span class="capacity">{p.slug==='custom'?'18L 캔 또는 벌크, 협의':'18L 캔'}</span>
+</a>
