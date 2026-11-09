@@ -68,6 +68,14 @@ GitHub에서 내려받아 `.opencode/skills/`에 설치했습니다. 두 스킬�
 
 이후 "~하는 스킬 있어?" 류의 요청은 이 스킬의 절차(skills.sh 리더보드 확인 → CLI 검색 → 1K+ 설치·공식 출처·100★ 이상 검증 → 제시)를 따릅니다.
 
+### taste-skill (2026-11-10)
+
+| 스킬 | 출처 | 설치 수 | 내용 |
+|---|---|---|---|
+| taste-skill 2.5.1 (design-taste-frontend) | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) (112k★) | 752K | "anti-slop" 프론트엔드 스킬. figma.com·x.ai 수준을 기준으로 삼는 9가지 하우스 룰(이미지 아래 캡션 금지, 화면당 한 섹션, 좌우 여백 동일, 호버 마이크로 모션, 실사진 우선, 주소·연락처 표기 규칙 등), 업종별 페이지 플랜, 실제 브라우저에서 검사하는 `gate.mjs`·`consistency.mjs`·`copy-lint.mjs`·`perf.mjs`, 레이아웃·팔레트 딜러(`deal.mjs`, `start.mjs`), 사진·아이콘 검색기. 38MB(에셋 포함). |
+
+skills.sh 전체 설치 순위 2위. `find-skills` 기준(1K+ 설치, 100★+, 신뢰 출처) 전부 통과.
+
 ### find-skills로 찾아 설치한 스킬 (2026-11-10)
 
 `npx skills find`로 seo·astro·firebase·korean·performance·schema·landing·form·image 9개 키워드를 검색하고, find-skills 검증 기준(설치 1K+, 공식 출처, 저장소 100★+)을 통과한 것만 설치했습니다.
