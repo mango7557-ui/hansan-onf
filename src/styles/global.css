@@ -354,6 +354,55 @@ h3{font-size:22px;font-weight:650;letter-spacing:-.02em;line-height:1.4}
 .privacy p{color:var(--muted);line-height:1.85}
 
 
+
+/* ── Dark-section variants ──────────────────────────────
+   Components that appear inside .dark sections. Amber carries the structure
+   (rules, labels, numbers); on-espresso tones carry the text. */
+.dark h2,.dark h3{color:var(--on-espresso)}
+.dark .prose,.dark .prose p{color:var(--on-espresso-muted)}
+.dark .note{color:#9a9085}
+.dark .kicker{color:var(--amber)}
+.info-table-dark th,.info-table-dark td{border-color:var(--line-dark)}
+.info-table-dark th{color:var(--amber)}
+.info-table-dark td{color:var(--on-espresso)}
+.info-table-dark tr:first-child > *{border-top:2px solid var(--amber)}
+.dark .rows{border-top-color:var(--amber)}
+.dark .row{border-bottom-color:var(--line-dark)}
+.dark .row p{color:var(--on-espresso-muted)}
+.dark .row:hover{color:var(--amber);box-shadow:inset 4px 0 0 var(--amber)}
+.dark .row:hover .text-link{color:var(--amber)}
+.dark .guide-article h2{color:var(--on-espresso)}
+.dark .guide-article p,.dark .guide-article li{color:var(--on-espresso-muted)}
+.dark .guide-article li strong{color:var(--amber)}
+.dark .guide-article ol{counter-reset:item;list-style:none;padding:0}
+.dark .guide-article ol li{counter-increment:item;position:relative;padding-left:44px;margin:18px 0}
+.dark .guide-article ol li::before{content:counter(item,decimal-leading-zero);position:absolute;left:0;top:-2px;font-family:var(--serif);font-size:24px;line-height:1;color:var(--amber)}
+.surface-amber .kicker{color:var(--amber-text)}
+.surface-amber .info-table th{color:var(--amber-text)}
+.surface-amber .info-table th,.surface-amber .info-table td{border-color:var(--line-amber)}
+.surface-amber .timeline article{border-top-color:var(--amber-deep)}
+.surface-amber .inline-cta{background:#fff}
+.surface-amber .regions div{border-color:var(--line-amber)}
+.surface-amber .text-link{color:var(--graphite)}
+/* contact: espresso info card */
+.contact-card{background:var(--espresso);color:var(--on-espresso);padding:40px;border-radius:4px;border-top:4px solid var(--amber)}
+.contact-card h2{color:var(--on-espresso)}
+.contact-card > p{color:var(--on-espresso-muted)}
+.contact-card .contact-number{color:var(--amber)}
+.contact-card dt{color:var(--amber)}
+.contact-card dd{color:var(--on-espresso)}
+.contact-card .text-link{color:var(--on-espresso)}
+.contact-card .text-link:hover{color:var(--amber)}
+/* product detail copy panel → amber wash with espresso heading rule */
+.detail-copy{background:var(--amber-wash);border-top:4px solid var(--espresso)}
+.detail-copy .info-table th,.detail-copy .info-table td{border-color:var(--line-amber)}
+/* quality steps: number badge on amber */
+.quality-steps li::before{background:var(--espresso);color:var(--amber);width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:22px}
+.steps li::before{color:var(--amber-deep)}
+/* section rhythm helper: amber top hairline on dark sections that follow light ones */
+.dark.section{border-top:1px solid var(--amber)}
+.closing.dark{border-top:0}
+
 /* ── Pointer interactions (desktop, fine pointer, motion allowed) ───
    Driven by src/scripts/pointer.ts with GSAP quickTo. CSS here only
    declares layers and will-change for the elements that actually move. */

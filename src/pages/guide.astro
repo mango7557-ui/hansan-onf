@@ -11,7 +11,7 @@ const schema=[{'@type':'FAQPage',mainEntity:faqs.map(f=>({'@type':'Question',nam
   <p class="prose" style="margin:24px 0 36px">범용 조리에는 콩식용유, 깔끔한 풍미의 튀김에는 카놀라유, 베이커리와 섬세한 튀김에는 해바라기유, 고소한 중식과 부침에는 옥수수유를 비교해 보세요. 최종 선택은 실제 메뉴의 조리 테스트와 공급 조건을 함께 확인하는 것이 좋습니다.</p>
   <div class="guide-table-wrap" role="region" aria-label="식용유 제품 비교 표" tabindex="0"><table class="guide-table"><thead><tr><th scope="col">제품</th><th scope="col">풍미와 사용 방향</th><th scope="col">잘 맞는 메뉴</th><th scope="col">규격</th></tr></thead><tbody>{products.slice(0,4).map(p=><tr><td><a href={`/products/${p.slug}/`}>{p.name}</a></td><td>{p.type}</td><td>{p.use.join(', ')}</td><td>18L 캔</td></tr>)}</tbody></table></div>
  </section>
- <section class="section surface"><article class="container guide-article">
+ <section class="section dark"><article class="container guide-article">
   <span class="kicker">첫 상담 전에</span><h2>네 가지를 준비하면 상담이 빨라집니다.</h2>
   <ol><li><strong>조리 메뉴와 사용 환경.</strong> 튀김, 볶음, 부침 등 주로 쓰는 조리 방식과 지금 사용 중인 제품.</li><li><strong>월 예상 사용량.</strong> 18L 캔 기준 수량이나 벌크 물량, 매장 수.</li><li><strong>배송 지역과 희망 일정.</strong> 납품 주소, 정기 공급 주기, 첫 납품 희망일.</li><li><strong>브랜드별 추가 조건.</strong> 전용 배합, 전용 용기, 표시사항, 품질 자료 등.</li></ol>
   <h2>발연점 숫자 하나로 고르지 마세요.</h2>
