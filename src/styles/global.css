@@ -120,9 +120,9 @@ h3{font-size:22px;font-weight:650;letter-spacing:-.02em;line-height:1.4}
 .hero-art::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,var(--esp-a88) 0%,var(--esp-a62) 38%,var(--esp-a18) 70%,var(--esp-a05) 100%),linear-gradient(0deg,var(--esp-a75),transparent 35%)}
 .hero-glow{position:absolute;inset:-20%;z-index:2;pointer-events:none;background:radial-gradient(40% 50% at 70% 60%,var(--amb-a18),transparent 70%);animation:drift 14s ease-in-out infinite alternate;mix-blend-mode:screen}
 .hero-copy{position:relative;z-index:3;align-self:center;padding:160px 0 80px}
-.hero-display{position:relative;font-weight:200;letter-spacing:-.02em;line-height:.9;color:var(--on-espresso);margin-bottom:28px;height:1.9em;font-size:clamp(56px,8.4vw,128px)}
+.hero-display{font-weight:200;letter-spacing:-.02em;line-height:1.05;color:var(--on-espresso);margin-bottom:28px;font-size:clamp(52px,7.2vw,108px)}
 .hero-display .thin{display:block;font-weight:200;opacity:0;animation:fade-rise 700ms var(--ease-out) 300ms forwards}
-.hero-display .bold{position:absolute;left:.18em;top:.62em;font-weight:800;color:var(--amber);font-size:.78em;letter-spacing:-.04em;opacity:0;animation:fade-rise 700ms var(--ease-out) 480ms forwards}
+.hero-display .bold{display:block;margin-top:8px;font-weight:800;color:var(--amber);font-size:.82em;letter-spacing:-.04em;line-height:1.05;opacity:0;animation:fade-rise 700ms var(--ease-out) 480ms forwards}
 .hero-h1{font-size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.02em;line-height:1.5;max-width:22em;color:var(--on-espresso)}
 .hero-h1 .line{display:block;opacity:0;animation:fade-rise 600ms var(--ease-out) forwards}
 .hero-h1 .line:nth-child(1){animation-delay:620ms}.hero-h1 .line:nth-child(2){animation-delay:700ms}.hero-h1 .line:nth-child(3){animation-delay:780ms}
@@ -556,8 +556,8 @@ h3{font-size:22px;font-weight:650;letter-spacing:-.02em;line-height:1.4}
   .hero-copy{padding:112px 0 32px}
   .hero-art::before{background:linear-gradient(0deg,var(--esp-a92) 0%,var(--esp-a55) 45%,var(--esp-a20) 100%)}
   .hero-art img,.hero-video{object-position:60% 40%}
-  .hero-display{font-size:clamp(48px,15vw,64px);height:1.95em}
-  .hero-display .bold{left:.1em;top:.7em}
+  .hero-display{font-size:clamp(42px,13vw,60px)}
+  .hero-display .bold{margin-top:6px}
   .hero-h1{font-size:19px}
   .hero-lede{font-size:15px}
   .hero-bottom{padding-bottom:28px}
